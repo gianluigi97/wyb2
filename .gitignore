@@ -212,4 +212,4 @@ __marimo__/
 # FILES
 
 .env/
-whatdoyoubeer-firebase-adminsdk-fbsvc-f4984d6570/
+*.json
