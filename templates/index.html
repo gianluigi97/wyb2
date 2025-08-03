@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Firebase</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    
+    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.0.0/firebase-auth-compat.js"></script>
+
+    <script>
+      const firebaseConfig = {
+            apiKey: "AIzaSyDdz2b8fQpH91FNEo63so4HMWWRNTUdk7Y",
+            authDomain: "whatdoyoubeer.firebaseapp.com",
+            projectId: "whatdoyoubeer",
+            storageBucket: "whatdoyoubeer.firebasestorage.app",
+            messagingSenderId: "895903839348",
+            appId: "1:895903839348:web:cfa61b831176c2c5db0d21",
+            measurementId: "G-1J28DT2M2X"
+          };
+
+      
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <form onsubmit="login(event)">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+
+    <script>
+      async function login(event) {
+        event.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        try {
+          const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+          const idToken = await userCredential.user.getIdToken();
+
+          
+          const res = await fetch("/sessionLogin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ idToken })
+          });
+
+          if (res.ok) {
+            window.location.href = "/dashboard";
+          } else {
+            alert("Errore login");
+          }
+        } catch (error) {
+          alert("Errore: " + error.message);
+        }
+      }
+    </script>
+  </body>
+</html>
