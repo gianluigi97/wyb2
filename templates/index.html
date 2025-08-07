@@ -23,12 +23,22 @@
     </script>
   </head>
   <body>
-    <h2>Login</h2>
+  <video autoplay muted loop id="bg-video">
+    <source src="{{ url_for('static', filename='videos/beer.mp4') }}" type="video/mp4">
+    Il tuo browser non supporta il video HTML5.
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="content">
     <form onsubmit="login(event)">
+      <h2>Enter your Credentials! 🍻</h2>
       <input type="email" id="email" placeholder="Email" required>
       <input type="password" id="password" placeholder="Password" required>
       <button type="submit">Login</button>
     </form>
+  </div>
+
 
     <script>
       async function login(event) {

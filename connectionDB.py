@@ -28,7 +28,7 @@ class Database:
             return None  
 
     @classmethod
-    def addRecord(cls, nome, litri):
+    def addRecord(cls, uid, quantity):
         conn = cls.connection()
         
         if conn is None:
@@ -38,7 +38,7 @@ class Database:
         cur = conn.cursor()
 
         try:
-            cur.execute("INSERT INTO records(nome, quantity) VALUES (%s, %s)", (nome, litri))
+            cur.execute("INSERT INTO records(nome, quantity) VALUES (%s, %s)", (uid, quantity))
             conn.commit()
         except Exception as e:
             print("Errore:", e)
@@ -67,5 +67,8 @@ class Database:
 
 if __name__ == "__main__": 
 
-    Database.connection()
+    if Database.connection():
+        print("Connected!")
+    else: 
+        print("Error while connecting")
     

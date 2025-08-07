@@ -4,8 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
 </head>
 <body>
-    <h1>Benvenuto nella tua homepage</h1>
+<video autoplay muted loop id="bg-video">
+    <source src="{{ url_for('static', filename='videos/beer.mp4') }}" type="video/mp4">
+    Il tuo browser non supporta il video HTML5.
+  </video>
+
+  <div class="overlay"></div>
+
+  <div class="content">
+      <h2>Welcome to your Homepage!</h2>
+  </div>
+  
 </body>
 </html>
