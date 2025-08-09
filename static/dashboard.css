@@ -27,11 +27,21 @@ html, body {
 }
 
 /* Contenitore centrale */
-.content {
-  position: relative;
-  height: 100%;
+.header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 0;
+  /*border: solid black*/; 
+  height: 10%;
+}
+
+.header .center {
+  flex: 1;
+  text-align: center;
+}
+
+#logout {
+  margin-right: 10px;
+}
+a{
+  color: white;
 }

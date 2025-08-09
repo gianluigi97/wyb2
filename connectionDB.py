@@ -27,6 +27,29 @@ class Database:
             print(f"Failed to connect: {e}")
             return None  
 
+    @classmethod 
+    def get_user_name(cls, uid):
+
+        conn = cls.connection()
+        
+        if conn is None:
+            print("Connessione al database fallita.")
+            return
+
+        cur = conn.cursor()
+
+        try:
+            cur.execute("SELECT name FROM users WHERE uid = %s", (uid,))
+            row = cur.fetchone()
+            if row:
+                return row[0]  # restituisce il nome
+            return None
+        except Exception as e:
+            print("Errore:", e)
+        finally:
+            conn.close()
+
+
     @classmethod
     def addRecord(cls, uid, quantity):
         conn = cls.connection()

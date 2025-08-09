@@ -14,9 +14,16 @@
 
   <div class="overlay"></div>
 
-  <div class="content">
-      <h2>Welcome to your Homepage!</h2>
+<div class="header">
+  <div class="center">
+    {% if name %}
+      <h2 style="color: white;">Welcome to your Homepage {{ name }}!</h2>
+    {% endif %}
   </div>
+  <div id="logout">
+      <a href="{{url_for('logout')}}">Logout</a>
+  </div>
+</div>
   
 </body>
 </html>
