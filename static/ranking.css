@@ -63,58 +63,57 @@ html, body {
   font-size: 30px;
 }
 
-#main {
-  margin: 70px auto 0 auto;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.197);
-  padding: 10px;
-  gap: 10px; 
-}
-
-#totale {
-  font-size: 40px;
-  margin: 15px;
-  color: white;
-}
-
-
-form {
-  
-  width: 100%;
-  height: 130px;  
+#ext-podium {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; 
+  height: 40vh;
+  margin: 75px 100px auto 100px;
+  gap: 10px; 
+  z-index: 1;
+  
+}
+
+
+.int-podium {
+  border: 2px solid black;
+  width: 50%;
+  display: grid;
+  grid-template-columns: auto 1fr auto; 
   align-items: center;
-  margin-top: 10px;
-  padding: 10px;
-  gap: 20px;
+  padding: 4px;
+  color: rgba(205, 190, 190, 0.866);
+  
 }
 
-form input {
-  width: 70%;
-  height: 30px;
+.int-podium h3:first-child {
+  grid-column: 1; /* numero */
+  margin: 0;
 }
 
-#main .buttons {
-  display: flex;
-  margin-top: 10px;
-  gap: 20px;
-}
-#main .buttons button {
-  font-size: 15px;
-  background-color: rgba(0, 0, 0, 0.171);;
-  color: white;
+.name {
+  grid-column: 2;     /* nome al centro */
+  text-align: center;
+  margin: 0;
 }
 
 
-
-
-
-
-
-
+#first{
+  margin: 0 auto 0 auto;
+  height: 60px;
+  font-size: 30px;
+  background: rgba(255, 217, 0, 0.284);
+}
+#second{
+  margin: 0 auto 0 5px;
+  height: 50px;
+  font-size: 25px;
+  background: rgba(192, 192, 192, 0.284)
+}
+#third{
+  margin: 0 5px 0 auto;
+  height: 40px;
+  font-size: 20px;
+  background: #cd803254;
+}

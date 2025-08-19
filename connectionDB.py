@@ -42,12 +42,38 @@ class Database:
             cur.execute("SELECT name FROM users WHERE uid = %s", (uid,))
             row = cur.fetchone()
             if row:
-                return row[0]  # restituisce il nome
+                return row[0] 
             return None
         except Exception as e:
             print("Errore:", e)
         finally:
             conn.close()
+
+    @classmethod
+    def get_total(cls):
+
+        conn = cls.connection()
+
+        if conn is None:
+            print("Connessione al database fallita.")
+            return
+
+        cur = conn.cursor()
+
+        try:
+            start = 2025
+            cur.execute("SELECT COALESCE(SUM(quantity), 0) FROM records")
+            actual = cur.fetchone()
+
+            totale = start - actual[0]
+
+            return totale
+        
+        except Exception as e:
+            print("Errore:", e)
+        finally:
+            conn.close()
+
 
 
     @classmethod
@@ -61,7 +87,7 @@ class Database:
         cur = conn.cursor()
 
         try:
-            cur.execute("INSERT INTO records(nome, quantity) VALUES (%s, %s)", (uid, quantity))
+            cur.execute('INSERT INTO records("user", quantity) VALUES (%s, %s)', (uid, quantity))
             conn.commit()
         except Exception as e:
             print("Errore:", e)

@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template, jsonify, session, u
 import firebase_admin
 from firebase_admin import auth, credentials
 from connectionDB import Database
+import pandas as pd 
 
 app = Flask(__name__)
 
@@ -52,8 +53,28 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+
+    if 'user' not in session: 
+        return redirect(url_for('home'))
+    
+    uid = session['user']
+
+    if request.method == "POST":
+
+        litri = request.form['quantity']
+        Database.addRecord(uid, litri)
+        
+        return redirect(url_for("home"))
+    
+    name = Database.get_user_name(uid)
+    totale = Database.get_total()
+
+    return render_template("dashboard.html", name=name, totale=totale)
+
+@app.route('/ranking', methods=["GET"])
+def ranking():
 
     if 'user' not in session: 
         return redirect(url_for('home'))
@@ -61,10 +82,23 @@ def dashboard():
     uid = session['user']
     name = Database.get_user_name(uid)
 
-    return render_template("dashboard.html", name=name)
+
+    conn = Database.connection()
+    cur = conn.cursor()
+
+    try: 
+        cur.execute("""SELECT * FROM ranking_v""")
+        result = pd.DataFrame(cur.fetchall())
+        result.columns = ['name', 'quantity']
+        ranking = result.to_dict(orient='records')
+
+
+    except Exception as e:
+        print(f'Error: {e}')
+
+    return render_template("ranking.html", name=name, ranking=ranking)
 
 
 if __name__ == "__main__":
 
     app.run(debug=True)
-  
