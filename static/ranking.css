@@ -68,17 +68,18 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center; 
-  height: 40vh;
-  margin: 75px 100px auto 100px;
+  height: 32vh;
+  margin: 75px 500px auto 500px;
   gap: 10px; 
   z-index: 1;
+  /* border: 2px solid black; */
   
 }
 
 
 .int-podium {
   border: 2px solid black;
-  width: 50%;
+  width: 49%;
   display: grid;
   grid-template-columns: auto 1fr auto; 
   align-items: center;
@@ -98,22 +99,55 @@ html, body {
   margin: 0;
 }
 
+.qt {
+  grid-column: 3;     /* nome al centro */
+  text-align: center;
+  margin: 0;
+}
+
 
 #first{
   margin: 0 auto 0 auto;
-  height: 60px;
-  font-size: 30px;
+  height: 72px;
+  font-size: 33px;
   background: rgba(255, 217, 0, 0.284);
 }
 #second{
   margin: 0 auto 0 5px;
-  height: 50px;
-  font-size: 25px;
-  background: rgba(192, 192, 192, 0.284)
+  height: 62px;
+  font-size: 28px;
+  background: rgba(192, 192, 192, 0.466)
 }
 #third{
   margin: 0 5px 0 auto;
-  height: 40px;
-  font-size: 20px;
+  height: 52px;
+  font-size: 23px;
   background: #cd803254;
+}
+
+#div-table {
+
+  display: flex;
+  justify-content: center;
+  /* border: 2px solid black;  */
+  padding: 10px;
+
+
+}
+
+#ranking-tab {
+  font-size: 25px;
+  width: 45%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.575);
+  /* background-color: rgba(255, 255, 255, 0.062) */
+}
+.center {
+  text-align: left;
+  margin-right: 20px;
+}
+
+th, td {
+  border-bottom: 1px solid #dddddd1e;
+  height: 60px;
 }

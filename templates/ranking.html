@@ -16,7 +16,7 @@
 
 <div class="header">
   {% if name %}
-  <div class="side" id="username">{{ name }}</div>
+  <div class="side" id="username"><h2>{{ name }}</h2></div>
   {% endif %}
   <div class="center">
       <a class="menu-button" href="{{url_for('home')}}">Home</a>
@@ -34,15 +34,29 @@
   <div class="int-podium" id="first">
     <h3>1</h3>
     <h3 class="name">{{ ranking[0].name }}</h3>
+    <h3 class="qt">{{ ranking[0].quantity }}</h3>
   </div>
   <div class="int-podium" id="second">
     <h3>2</h3>
     <h3 class="name">{{ ranking[1].name }}</h3>
+    <h3 class="qt">{{ ranking[1].quantity }}</h3>
   </div>
   <div class="int-podium" id="third">
     <h3>3</h3>
     <h3 class="name">{{ ranking[2].name }}</h3>
+    <h3 class="qt">{{ ranking[2].quantity }}</h3>
   </div>
+</div>
+<div id="div-table">
+  <table id="ranking-tab">
+    {% for item in ranking[3:] %}
+      <tr>
+        <td>{{ loop.index + 3 }}</td>   
+        <td class="center">{{ item.name }}</td>       
+        <td>{{ item.quantity }}</td>    
+      </tr>
+    {% endfor %}
+  </table>
 </div>
 {% endif %}
 

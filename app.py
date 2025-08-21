@@ -87,7 +87,7 @@ def ranking():
     cur = conn.cursor()
 
     try: 
-        cur.execute("""SELECT * FROM ranking_v""")
+        cur.execute("""SELECT * FROM ranking_v where name <> 'compagnia'""")
         result = pd.DataFrame(cur.fetchall())
         result.columns = ['name', 'quantity']
         ranking = result.to_dict(orient='records')
